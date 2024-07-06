@@ -5,20 +5,20 @@ This Python script processes a CSV file containing data about medical institutio
 ## Sample Code
 
 ```python
+
 import pandas as pd
+import numpy as np
 
 # Load the data from the CSV file
-url = 'https://raw.githubusercontent.com/kiang/pharmacies/master/data.csv'
-data = pd.read_csv(url)
+url = "https://raw.githubusercontent.com/kiang/pharmacies/master/data.csv"
+df = pd.read_csv(url)
 
-# Extract the city name from the address (assuming the address starts with the city name)
-data['city'] = data['地址'].apply(lambda x: x.split()[0] if pd.notnull(x) else 'Unknown')
+# Counting the number of occurrences of each city (縣市)
+city_count = df["縣市"].value_counts()
 
-# Count the number of medical institutions in each city
-city_counts = data['city'].value_counts()
+# Getting the top five cities with the highest number of occurrences
+top_five = city_count.head(5)
 
-# Get the top 5 cities with the highest number of medical institutions
-top_5_cities = city_counts.head(5)
-
-# Display the result
-print(top_5_cities)
+# Printing the results
+print("醫事機構數量前五高的縣市：")
+print(top_five)
