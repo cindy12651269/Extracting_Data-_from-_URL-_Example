@@ -20,5 +20,5 @@ city_count = df["縣市"].value_counts()
 top_five = city_count.head(5)
 
 # Printing the results
-print("醫事機構數量前五高的縣市：")
-print(top_five)
+print(f"醫事機構數量前五高的縣市：{top_five}")
+     
